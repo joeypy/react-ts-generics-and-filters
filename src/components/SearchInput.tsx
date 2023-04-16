@@ -4,7 +4,7 @@ import useDebounce from "../hooks/useDebounce";
 export interface ISearchInputProps {
   searchQuery: string;
   setSearchQuery(searchQuery: string): void;
-  debounceTime: number;
+  debounceTime?: number;
 }
 
 export const SearchInput = (props: ISearchInputProps) => {

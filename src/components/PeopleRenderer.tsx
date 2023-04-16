@@ -2,7 +2,7 @@ import dayjs from "dayjs";
 import { IPerson } from "../interfaces";
 
 export function PeopleRenderer(props: IPerson) {
-  const { firstName, lastName, birthday, eyeColor } = props;
+  const { id, firstName, lastName, birthday, eyeColor } = props;
   return (
     <div>
       <div
@@ -31,6 +31,18 @@ export function PeopleRenderer(props: IPerson) {
               🎂 Birthday: <b>{dayjs(birthday).format("MMMM D, YYYY")}</b>
             </li>
           </ul>
+        </div>
+
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "space-between",
+            backgroundColor: "#cac8c8",
+            padding: "0.5rem",
+            color: "black",
+          }}
+        >
+          <div>ID: #{id}</div>
         </div>
       </div>
     </div>

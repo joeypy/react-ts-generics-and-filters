@@ -39,7 +39,7 @@ export function WidgetRenderer(props: IWidget) {
           color: isSpecialCard ? "white" : "black",
         }}
       >
-        <div>#{id}</div>
+        <div>ID: #{id}</div>
         <div>
           Updated: {dayjs(updated).fromNow()} | Created:{" "}
           {dayjs(created).fromNow()}

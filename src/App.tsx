@@ -25,11 +25,9 @@ function App() {
           >
             {(widget) => (
               <div
+                key={widget.id}
                 style={{
-                  display: "flex",
-                  flexDirection: "column",
-                  gap: "1rem",
-                  padding: "1rem",
+                  margin: "1rem 0",
                 }}
               >
                 <WidgetRenderer {...widget} />
@@ -44,16 +42,17 @@ function App() {
             dataSource={people}
             initialSearchQuery={""}
             searchProperties={["firstName", "lastName"]}
-            initialSortProperties={{ property: "firstName", isDescending: false }}
+            initialSortProperties={{
+              property: "firstName",
+              isDescending: false,
+            }}
             initialFilterProperties={[]}
           >
             {(person) => (
               <div
+                key={person.id}
                 style={{
-                  display: "flex",
-                  flexDirection: "column",
-                  gap: "1rem",
-                  padding: "1rem",
+                  margin: "1rem 0",
                 }}
               >
                 <PeopleRenderer {...person} />
