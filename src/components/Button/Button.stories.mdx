@@ -1,0 +1,32 @@
+import { Meta, Canvas } from "@storybook/addon-docs/blocks";
+import { ArgsTable, Controls } from "@storybook/addon-docs/blocks";
+import Button from "./Button";
+
+<Meta title="Button" component={Button} primary />
+
+# Button
+
+Botton created in storybook for testing porposes.
+
+<Canvas>
+  {/* <Controls
+    props={{
+      color: {
+        control: {
+          type: "select",
+          options: ["grenn", "blue", "red", "yellow"],
+        },
+        description: "The background color of the button",
+      },
+      onClick: { action: "clicked" },
+    }}
+  > */}
+  <Button color="green" onClick={() => alert("Clicked!")}>
+    Click me
+  </Button>
+  {/* </Controls> */}
+</Canvas>
+
+## Args
+
+<ArgsTable of={Button} />
