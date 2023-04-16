@@ -1,4 +1,4 @@
-export default function genericSearch<T>(
+export function genericSearch<T>(
   object: T,
   properties: Array<keyof T>,
   query: string,

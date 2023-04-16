@@ -1,4 +1,4 @@
-export default interface IWidget {
+export interface IWidget {
   title: string;
   description: string;
   id: number;

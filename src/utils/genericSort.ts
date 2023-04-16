@@ -1,6 +1,6 @@
-import ISorter from "../interfaces/ISorter";
+import { ISorter } from "../interfaces";
 
-export default function genericSort<T>(a: T, b: T, propertyType: ISorter<T>) {
+export function genericSort<T>(a: T, b: T, propertyType: ISorter<T>) {
   const { property, isDescending } = propertyType;
 
   const result = () => {

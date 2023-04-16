@@ -1,18 +1,13 @@
 import dayjs from "dayjs";
-import IWidget from "../interfaces/IWidget";
 import relativeTime from "dayjs/plugin/relativeTime";
+import { IWidget } from "../interfaces";
 
 dayjs.extend(relativeTime);
 
-export function WidgetRenderer({
-  id,
-  created,
-  updated,
-  title,
-  isSpecialCard,
-  description,
-  rating,
-}: IWidget) {
+export function WidgetRenderer(props: IWidget) {
+  const { id, created, updated, title, isSpecialCard, description, rating } =
+    props;
+
   return (
     <div
       style={{
@@ -45,7 +40,10 @@ export function WidgetRenderer({
         }}
       >
         <div>#{id}</div>
-        <div>Updated: {dayjs(updated).fromNow()} | Created: {dayjs(created).fromNow()}</div>
+        <div>
+          Updated: {dayjs(updated).fromNow()} | Created:{" "}
+          {dayjs(created).fromNow()}
+        </div>
       </div>
     </div>
   );

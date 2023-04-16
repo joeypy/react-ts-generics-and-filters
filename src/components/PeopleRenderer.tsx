@@ -1,12 +1,8 @@
-import IPerson from "../interfaces/IPerson";
 import dayjs from "dayjs";
+import { IPerson } from "../interfaces";
 
-export function PeopleRenderer({
-  firstName,
-  lastName,
-  birthday,
-  eyeColor,
-}: IPerson) {
+export function PeopleRenderer(props: IPerson) {
+  const { firstName, lastName, birthday, eyeColor } = props;
   return (
     <div>
       <div

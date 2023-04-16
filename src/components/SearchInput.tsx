@@ -1,17 +1,20 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import useDebounce from "../hooks/useDebounce";
 
 export interface ISearchInputProps {
-  setSearchQuery: (searchQuery: string) => void;
+  searchQuery: string;
+  setSearchQuery(searchQuery: string): void;
+  debounceTime: number;
 }
 
-export const SearchInput = ({ setSearchQuery }: ISearchInputProps) => {
-  const [query, setQuery] = useState<string>("");
-  const debounceQuery = useDebounce(query, 250);
+export const SearchInput = (props: ISearchInputProps) => {
+  const { searchQuery, setSearchQuery, debounceTime = 250 } = props;
+  const [query, setQuery] = useState<string>(searchQuery);
+  const debouncedQuery = useDebounce(query, debounceTime);
 
   useEffect(() => {
-    setSearchQuery(debounceQuery);
-  }, [debounceQuery, setSearchQuery]);
+    setSearchQuery(debouncedQuery);
+  }, [debouncedQuery]);
 
   return (
     <>
@@ -19,6 +22,7 @@ export const SearchInput = ({ setSearchQuery }: ISearchInputProps) => {
         Search! Try me!
       </label>
       <input
+        value={query}
         id="search"
         type="search"
         className=""

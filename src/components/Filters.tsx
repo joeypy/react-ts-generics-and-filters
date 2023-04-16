@@ -1,18 +1,42 @@
-import IFilter from "../interfaces/IFilter";
+import { IFilter } from "../interfaces";
 
 interface IFiltersProps<T> {
-  object: T;
-  properties: Array<IFilter<T>>;
-  onChangeFilter: (property: IFilter<T>) => void;
+  dataSource: Array<T>;
+  filterProperties: Array<IFilter<T>>;
+  setFilterProperties: (filterProperties: Array<IFilter<T>>) => void;
 }
 
-const Filters = <T extends Object>({
-  object,
-  properties,
-  onChangeFilter,
-}: IFiltersProps<T>) => {
+export const Filters = <T extends Object>(props: IFiltersProps<T>) => {
+  const { dataSource, filterProperties, setFilterProperties } = props;
+  const object = dataSource.length > 0 ? dataSource[0] : {};
 
-  
+  const onChangeFilter = (property: IFilter<T>) => {
+    const propertyMatch = filterProperties.some(
+      (filterProperty) => filterProperty.property === property.property
+    );
+    const fullMatch = filterProperties.some(
+      (filterProperty) =>
+        filterProperty.property === property.property &&
+        filterProperty.isTruthySelected === property.isTruthySelected
+    );
+
+    if (fullMatch) {
+      setFilterProperties(
+        filterProperties.filter(
+          (filterProperty) => filterProperty.property !== property.property
+        )
+      );
+    } else if (propertyMatch) {
+      setFilterProperties([
+        ...filterProperties.filter(
+          (filterProperty) => filterProperty.property !== property.property
+        ),
+        property,
+      ]);
+    } else {
+      setFilterProperties([...filterProperties, property]);
+    }
+  };
 
   return (
     <div>
@@ -26,7 +50,7 @@ const Filters = <T extends Object>({
             onChange={() =>
               onChangeFilter({ property: key as any, isTruthySelected: true })
             }
-            checked={properties.some(
+            checked={filterProperties.some(
               (property) =>
                 property.property === key && property.isTruthySelected
             )}
@@ -40,7 +64,7 @@ const Filters = <T extends Object>({
             onChange={() =>
               onChangeFilter({ property: key as any, isTruthySelected: false })
             }
-            checked={properties.some(
+            checked={filterProperties.some(
               (property) =>
                 property.property === key && !property.isTruthySelected
             )}
@@ -51,5 +75,3 @@ const Filters = <T extends Object>({
     </div>
   );
 };
-
-export default Filters;

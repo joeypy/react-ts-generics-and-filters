@@ -1,4 +1,4 @@
-export default interface ISorter<T> {
+export interface ISorter<T> {
   property: keyof T;
   isDescending: boolean;
 }
