@@ -60,6 +60,8 @@ function App() {
             )}
           </SearchSortAndFilter>
         )}
+
+        <h1>Filters with children</h1>
       </div>
     </div>
   );
